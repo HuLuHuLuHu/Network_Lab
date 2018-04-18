@@ -182,7 +182,7 @@ bool compare_refresh_config(struct stp_config *receive,stp_port_t *p){
 		//refresh other port
 		for(int i=0;i<stp->nports;i++)
 			if(stp->ports[i].port_id != p->port_id){
-				if(!stp_port_is_designated(&stp->ports[i]) && compare_port_priority(&stp->ports[i],p)){
+				if(!stp_port_is_designated(&stp->ports[i]) && !compare_port_priority(&stp->ports[i],p)){
 				(&(stp->ports[i]))->designated_root = stp->designated_root;
 				(&(stp->ports[i]))->designated_cost = stp->root_path_cost;
 				(&(stp->ports[i]))->designated_port = stp->ports[i].port_id;
@@ -196,10 +196,10 @@ bool compare_refresh_config(struct stp_config *receive,stp_port_t *p){
 	return true;
 	}
 	else{
-		 // p->designated_cost = stp->root_path_cost;
-		 // p->designated_root = stp->designated_root;
-		 // p->designated_port = p->port_id; 
-		 // p->designated_switch = stp->switch_id;
+		  // p->designated_cost = stp->root_path_cost;
+		  // p->designated_root = stp->designated_root;
+		  // p->designated_port = p->port_id; 
+		  // p->designated_switch = stp->switch_id;
 		return false;
 	}
 }
